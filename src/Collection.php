@@ -73,17 +73,27 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
 
     /**
      * Determine if an item exists in the collection by key.
-     * @param TKey|array<array-key, TKey> $key
+     * @param TKey ...$keys
      * @return bool
      */
-    public function has(mixed $key): bool
+    public function has(mixed ...$keys): bool
     {
-        $keys = is_array($key) ? $key : func_get_args();
-        foreach ($keys as $value)
-        {
-            if (! array_key_exists($value, $this->items))
+        foreach ($keys as $key)
+            if(!array_key_exists($key, $this->items))
                 return false;
-        }
+        return true;
+    }
+
+    /**
+     * Determine if a value exists in the collection.
+     * @param TValue ...$values
+     * @return bool
+     */
+    public function in(mixed ...$values): bool
+    {
+        foreach ($values as $value)
+            if(in_array($value, $this->items, true))
+                return false;
         return true;
     }
 
