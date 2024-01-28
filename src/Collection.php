@@ -101,6 +101,34 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     }
 
     /**
+     * Get first item from the collection.
+     * @template TValueDefault
+     * @param TValueDefault|mixed $default
+     * @return TValue|TValueDefault
+     */
+    public function first(mixed $default = null): mixed
+    {
+        $key = array_key_first($this->items);
+        if(is_null($key))
+            return $default instanceof Closure ? $default($key) : $default;
+        return $this->items[$key];
+    }
+
+    /**
+     * Get last item from the collection.
+     * @template TValueDefault
+     * @param TValueDefault|mixed $default
+     * @return TValue|TValueDefault
+     */
+    public function last(mixed $default = null): mixed
+    {
+        $key = array_key_last($this->items);
+        if(is_null($key))
+            return $default instanceof Closure ? $default($key) : $default;
+        return $this->items[$key];
+    }
+
+    /**
      * Count the number of items in the collection.
      * @return int
      */
