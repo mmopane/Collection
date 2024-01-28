@@ -129,6 +129,15 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     }
 
     /**
+     * Get all the items in the collection.
+     * @return array<TKey, TValue>
+     */
+    public function all(): array
+    {
+        return $this->items;
+    }
+
+    /**
      * Count the number of items in the collection.
      * @return int
      */
