@@ -92,7 +92,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     public function in(mixed ...$values): bool
     {
         foreach ($values as $value)
-            if(in_array($value, $this->items, true))
+            if(!in_array($value, $this->items, true))
                 return false;
         return true;
     }
