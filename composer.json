@@ -1,0 +1,19 @@
+{
+    "name": "mmopane/collection",
+    "description": "A simple collection",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "MMOPANE\\Collection\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "mmopane"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    }
+}
