@@ -6,8 +6,6 @@ use ArgumentCountError;
 use ArrayAccess;
 use ArrayIterator;
 use Closure;
-use Countable;
-use IteratorAggregate;
 use Traversable;
 
 /**
@@ -15,7 +13,7 @@ use Traversable;
  * @template-covariant TValue
  * @implements ArrayAccess<TKey, TValue>
  */
-class Collection implements ArrayAccess, Countable, IteratorAggregate
+class Collection implements CollectionInterface
 {
     /**
      * The items contained in the collection.
@@ -145,6 +143,16 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate
     public function all(): array
     {
         return $this->items;
+    }
+
+    /**
+     * Delete all items in the collection.
+     * @return static<int, TKey>
+     */
+    public function clear(): static
+    {
+        $this->items = [];
+        return $this;
     }
 
     /**
